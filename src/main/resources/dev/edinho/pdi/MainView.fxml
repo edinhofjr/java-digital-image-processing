@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.image.ImageView?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dev.edinho.pdi.MainController"
+      spacing="12">
+    <padding>
+        <Insets top="0" right="0" bottom="24" left="0"/>
+    </padding>
+
+    <MenuBar>
+        <Menu text="Arquivo">
+            <MenuItem text="Abrir..." onAction="#onOpen"/>
+            <MenuItem text="Salvar" onAction="#onSave"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Sair" onAction="#onExit"/>
+        </Menu>
+        <Menu text="Editar">
+            <MenuItem text="Desfazer" onAction="#onUndo"/>
+        </Menu>
+        <Menu text="Ajuda">
+            <MenuItem text="Sobre" onAction="#onAbout"/>
+        </Menu>
+    </MenuBar>
+    <HBox spacing="16" alignment="CENTER" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="0" right="24" bottom="0" left="24"/>
+        </padding>
+        <VBox spacing="8" alignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity">
+            <Label text="Original"/>
+            <StackPane fx:id="originalContainer" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity"
+                       style="-fx-background-color: #2b2b2b; -fx-border-color: #444444;">
+                <ImageView fx:id="originalImageView" preserveRatio="true" managed="false"
+                           fitWidth="${originalContainer.width}" fitHeight="${originalContainer.height}"/>
+            </StackPane>
+        </VBox>
+        <VBox spacing="8" alignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity">
+            <Label text="Processada"/>
+            <StackPane fx:id="processedContainer" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity"
+                       style="-fx-background-color: #2b2b2b; -fx-border-color: #444444;">
+                <ImageView fx:id="processedImageView" preserveRatio="true" managed="false"
+                           fitWidth="${processedContainer.width}" fitHeight="${processedContainer.height}"/>
+            </StackPane>
+        </VBox>
+    </HBox>
+    <Label fx:id="statusLabel" text="Pronto" style="-fx-padding: 0 0 0 24;"/>
+</VBox>

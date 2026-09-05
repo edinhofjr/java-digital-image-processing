@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6aba90af-a168-4d76-9f21-167abd05d396" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/edinho/pdi/entities/ImageFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/edinho/pdi/entities/ImageManipulator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/edinho/pdi/entities/Matrices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/edinho/pdi/entities/Matrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/edinho/pdi/entities/MatrixOperator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/edinho/pdi/io/ImagePicker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/image/ImageFactoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/matrix/MatricesCreationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/matrix_operation/MatrixOperatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/transformations/TranslateTransformationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/black_pixel.png" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="14" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0002354998778664" />
+      <entry key="S2" value="1.1314985849161856" />
+      <entry key="S5" value="1.7161682684255948" />
+      <entry key="S10" value="2.9465830617018574" />
+      <entry key="S30" value="5.784043520488618" />
+      <entry key="S60" value="7.156926890545892" />
+      <entry key="M2" value="8.010704101986821" />
+      <entry key="M5" value="9.02543553881045" />
+      <entry key="M10" value="14.172167860490157" />
+      <entry key="M15" value="23.473774954427046" />
+      <entry key="M30" value="60.850054161629096" />
+      <entry key="H1" value="127.62611488243505" />
+      <entry key="H2" value="200.37683477113353" />
+      <entry key="H4" value="256.2374613052915" />
+      <entry key="D1" value="317.6891077633525" />
+      <entry key="W1" value="329.9096954990571" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="3.131802702332061E-14" />
+      <entry key="MS500" value="0.0019914017246058413" />
+      <entry key="S2" value="0.21125444814882735" />
+      <entry key="S5" value="0.5460058582956627" />
+      <entry key="S10" value="0.8280324340917401" />
+      <entry key="S30" value="1.358278327510268" />
+      <entry key="S60" value="1.6253183545817451" />
+      <entry key="M2" value="1.7966238766253457" />
+      <entry key="M5" value="2.00868542447078" />
+      <entry key="M10" value="2.979805322194957" />
+      <entry key="M15" value="4.481826601626654" />
+      <entry key="M30" value="9.593929474086323" />
+      <entry key="H1" value="17.962604550611054" />
+      <entry key="H2" value="26.89272797778056" />
+      <entry key="H4" value="33.727211326212924" />
+      <entry key="D1" value="41.247484980549494" />
+      <entry key="W1" value="42.74398609611317" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="7.168083834434522E-14" />
+      <entry key="MS500" value="0.0034120300829816605" />
+      <entry key="S2" value="0.5085983634861933" />
+      <entry key="S5" value="1.7252537601491726" />
+      <entry key="S10" value="3.41452306214404" />
+      <entry key="S30" value="6.965673482758847" />
+      <entry key="S60" value="8.680535614552472" />
+      <entry key="M2" value="9.752297388925687" />
+      <entry key="M5" value="11.00934006077192" />
+      <entry key="M10" value="17.131260261449505" />
+      <entry key="M15" value="27.932628913420114" />
+      <entry key="M30" value="70.41503929190331" />
+      <entry key="H1" value="145.5586990892331" />
+      <entry key="H2" value="227.246013412378" />
+      <entry key="H4" value="289.94960181463273" />
+      <entry key="D1" value="358.9334744399783" />
+      <entry key="W1" value="372.6532188611273" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3ItXfWlxjQLDg5rzzdmw3Qd1SUA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.App.executor": "Run",
+    "JUnit.ImageFactoryTest.loadImageFromDisk.executor": "Run",
+    "JUnit.MatrixsCreationTest.testMatrixCreation.executor": "Run",
+    "JUnit.Run all tests.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/edinho/projects/pdi-java/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources" />
+      <recent name="$PROJECT_DIR$/src/test/java" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ImageFactoryTest.loadImageFromDisk">
+    <configuration name="ImageFactoryTest.loadImageFromDisk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pdi-java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="image.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="image" />
+      <option name="MAIN_CLASS_NAME" value="image.ImageFactoryTest" />
+      <option name="METHOD_NAME" value="loadImageFromDisk" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatrixsCreationTest.testMatrixCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pdi-java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="matrix.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="matrix" />
+      <option name="MAIN_CLASS_NAME" value="matrix.MatrixsCreationTest" />
+      <option name="METHOD_NAME" value="testMatrixCreation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Run all tests" type="JUnit" factoryName="JUnit">
+      <module name="pdi-java" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.Run all tests" />
+      <item itemvalue="JUnit.ImageFactoryTest.loadImageFromDisk" />
+      <item itemvalue="JUnit.MatrixsCreationTest.testMatrixCreation" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ImageFactoryTest.loadImageFromDisk" />
+        <item itemvalue="JUnit.MatrixsCreationTest.testMatrixCreation" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6aba90af-a168-4d76-9f21-167abd05d396" name="Changes" comment="" />
+      <created>1788584942745</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1788584942745</updated>
+      <workItem from="1788584944922" duration="158000" />
+      <workItem from="1788585132128" duration="119000" />
+      <workItem from="1788585262870" duration="2590000" />
+      <workItem from="1788643603889" duration="6140000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
