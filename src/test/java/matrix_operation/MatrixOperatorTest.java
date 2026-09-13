@@ -5,11 +5,9 @@ import dev.edinho.pdi.entities.MatrixOperator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.naming.OperationNotSupportedException;
-
 class MatrixOperatorTest {
     @Test
-    void testMatrixProduct() throws OperationNotSupportedException {
+    void testMatrixProduct() {
         Matrix initialPosition = new Matrix(new double[][]{
                 {1, 0, 4},
                 {0, 1, 3},

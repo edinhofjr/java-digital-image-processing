@@ -3,7 +3,7 @@ package dev.edinho.pdi.entities;
 import java.util.Arrays;
 
 public class Matrix {
-    public final double[][] m;
+    private final double[][] m;
     private final int rows;
     private final int columns;
 
@@ -11,6 +11,10 @@ public class Matrix {
         this.m = matrix;
         this.rows = matrix.length;
         this.columns = matrix[0].length;
+    }
+
+    public double get(int row, int column) {
+        return m[row][column];
     }
 
     public int getRows() {
