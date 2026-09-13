@@ -13,8 +13,8 @@ public final class DialogFactory {
         return new DataInputDialogBuilder<TranslateInput>()
                 .title("Translatar")
                 .owner(owner)
-                .field(new DataInputField("x", "Valor para X:", DataInputFieldType.INTEGER))
-                .field(new DataInputField("y", "Valor para Y:", DataInputFieldType.INTEGER))
+                .field(DataInputField.integer("x", "Valor para X:"))
+                .field(DataInputField.integer("y", "Valor para Y:"))
                 .resultMapper(values -> new TranslateInput(
                         Integer.parseInt(values.get("x")),
                         Integer.parseInt(values.get("y"))))
@@ -25,7 +25,7 @@ public final class DialogFactory {
         return new DataInputDialogBuilder<RotateInput>()
                 .title("Rotacionar")
                 .owner(owner)
-                .field(new DataInputField("angle", "Ângulo (graus):", DataInputFieldType.INTEGER))
+                .field(DataInputField.integer("angle", "Ângulo (graus):"))
                 .resultMapper(values -> new RotateInput(
                         Integer.parseInt(values.get("angle"))))
                 .build();

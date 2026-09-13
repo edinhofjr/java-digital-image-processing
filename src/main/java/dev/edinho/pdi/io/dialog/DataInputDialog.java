@@ -31,10 +31,9 @@ public class DataInputDialog<R> extends Dialog<R> {
 
         int row = 0;
         for (DataInputField field : dataFields) {
-            TextField textField = new TextField();
-            if (field.type() == DataInputFieldType.INTEGER) {
-                textField.setText("0");
-                textField.setTextFormatter(integerFormatter());
+            TextField textField = new TextField(field.defaultValue());
+            if (field.formatterSupplier() != null) {
+                textField.setTextFormatter(field.formatterSupplier().get());
             }
 
             Label label = new Label(field.label());
@@ -60,10 +59,5 @@ public class DataInputDialog<R> extends Dialog<R> {
         setOnShown(ev -> Platform.runLater(() ->
                 fields.values().stream().findFirst().ifPresent(Node::requestFocus)
         ));
-    }
-
-    private static TextFormatter<String> integerFormatter() {
-        return new TextFormatter<>(change ->
-                change.getControlNewText().matches("-?\\d*") ? change : null);
     }
 }
