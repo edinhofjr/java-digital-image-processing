@@ -7,6 +7,7 @@ import dev.edinho.pdi.io.ImageRepository;
 import dev.edinho.pdi.io.ImageSaver;
 import dev.edinho.pdi.io.dialog.DataInputDialog;
 import dev.edinho.pdi.io.dialog.DialogFactory;
+import dev.edinho.pdi.io.dialog.dto.RotateInput;
 import dev.edinho.pdi.io.dialog.dto.TranslateInput;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
@@ -58,6 +59,17 @@ public class MainController {
             BufferedImage translatedImage = im.translateProcess(input.x(), input.y());
             state.setTransformedImage(translatedImage);
             processedImageView.setImage(SwingFXUtils.toFXImage(translatedImage, null));
+        });
+    }
+    @FXML
+    private void onRotate() {
+        DataInputDialog<RotateInput> dialog = DialogFactory.rotate(stage);
+
+        dialog.showAndWait().ifPresent(input -> {
+            ImageManipulator im = new ImageManipulator(state.getActualImage());
+            BufferedImage rotatedImage = im.rotateProcess(input.angle());
+            state.setTransformedImage(rotatedImage);
+            processedImageView.setImage(SwingFXUtils.toFXImage(rotatedImage, null));
         });
     }
 
