@@ -11,45 +11,20 @@ public class ImageManipulator {
     }
 
     public BufferedImage translateProcess(int x, int y) {
-        int lx = image.getWidth();
-        int ly = image.getHeight();
-
-        BufferedImage newImage = ImageFactory.createEmptyImage(image);
-
-        Matrix translationMatrix = new Matrix(new double[][]{
-                {1, 0, x},
-                {0, 1, y},
+        Matrix inverseTranslation = new Matrix(new double[][]{
+                {1, 0, -x},
+                {0, 1, -y},
                 {0, 0, 1}
         });
-
-        int inicioX = Math.max(0, -x), fimX = Math.min(lx, lx - x);
-        int inicioY = Math.max(0, -y), fimY = Math.min(ly, ly - y);
-
-        for (int iy = inicioY; iy < fimY; iy++) {
-            for (int ix = inicioX; ix < fimX; ix++) {
-                Matrix position = Matrices.columnsFromArray(new double[]{ix, iy, 1});
-                Matrix newPosition = MatrixOperator.product(translationMatrix, position);
-
-                int nx = (int) newPosition.get(0, 0);
-                int ny = (int) newPosition.get(1, 0);
-
-                newImage.setRGB(nx, ny, image.getRGB(ix, iy));
-            }
-        }
-        return newImage;
+        return applyInverseTransform(inverseTranslation);
     }
 
     public BufferedImage rotateProcess(int angleDegrees) {
-        int lx = image.getWidth();
-        int ly = image.getHeight();
-
-        BufferedImage newImage = ImageFactory.createEmptyImage(image);
-
         double angleRadians = Math.toRadians(-angleDegrees);
         double cos = Math.cos(angleRadians);
         double sin = Math.sin(angleRadians);
-        double cx = lx / 2.0;
-        double cy = ly / 2.0;
+        double cx = image.getWidth() / 2.0;
+        double cy = image.getHeight() / 2.0;
 
         Matrix toOrigin = new Matrix(new double[][]{
                 {1, 0, -cx},
@@ -68,11 +43,19 @@ public class ImageManipulator {
         });
 
         Matrix inverseRotationMatrix = MatrixOperator.product(backToCenter, MatrixOperator.product(rotation, toOrigin));
+        return applyInverseTransform(inverseRotationMatrix);
+    }
+
+    private BufferedImage applyInverseTransform(Matrix inverseTransform) {
+        int lx = image.getWidth();
+        int ly = image.getHeight();
+
+        BufferedImage newImage = ImageFactory.createEmptyImage(image);
 
         for (int ny = 0; ny < ly; ny++) {
             for (int nx = 0; nx < lx; nx++) {
                 Matrix position = Matrices.columnsFromArray(new double[]{nx, ny, 1});
-                Matrix sourcePosition = MatrixOperator.product(inverseRotationMatrix, position);
+                Matrix sourcePosition = MatrixOperator.product(inverseTransform, position);
 
                 int sx = (int) Math.round(sourcePosition.get(0, 0));
                 int sy = (int) Math.round(sourcePosition.get(1, 0));
