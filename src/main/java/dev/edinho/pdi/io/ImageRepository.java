@@ -4,9 +4,12 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 
 public class ImageRepository {
+    private ImageRepository() {
+        /* This is a Util class */
+    }
+
     public static BufferedImage load(File file) throws IOException {
         BufferedImage image = ImageIO.read(file);
         if (image == null) {
