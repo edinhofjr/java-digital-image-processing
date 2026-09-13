@@ -16,6 +16,9 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
         Parent root = loader.load();
 
+        MainController controller = loader.getController();
+        controller.setStage(stage);
+
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
 

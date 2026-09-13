@@ -7,7 +7,7 @@ import dev.edinho.pdi.io.ImageRepository;
 import dev.edinho.pdi.io.ImageSaver;
 import dev.edinho.pdi.io.dialog.DataInputDialog;
 import dev.edinho.pdi.io.dialog.DialogFactory;
-import dev.edinho.pdi.io.dialog.TranslateInput;
+import dev.edinho.pdi.io.dialog.dto.TranslateInput;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class MainController {
     private final AppState state = new AppState();
+    private Stage stage;
 
     @FXML
     private Label statusLabel;
@@ -30,8 +31,12 @@ public class MainController {
     @FXML
     private ImageView processedImageView;
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     private Stage getStage() {
-        return (Stage) statusLabel.getScene().getWindow();
+        return stage;
     }
     @FXML
     private void onOpen() throws IOException {
@@ -46,7 +51,6 @@ public class MainController {
 
     @FXML
     private void onTranslate() {
-        Stage stage = getStage();
         DataInputDialog<TranslateInput> dialog = DialogFactory.translate(stage);
 
         dialog.showAndWait().ifPresent(input -> {
@@ -56,9 +60,9 @@ public class MainController {
             processedImageView.setImage(SwingFXUtils.toFXImage(translatedImage, null));
         });
     }
+
     @FXML
     private void onSave() throws IOException {
-        Stage stage = getStage();
         ImageSaver saver = new ImageSaver(stage);
 
         File saveFile = saver.choose();
