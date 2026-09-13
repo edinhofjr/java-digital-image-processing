@@ -29,7 +29,7 @@
         <Menu text="Editar">
             <MenuItem text="Transladar" onAction="#onTranslate"/>
             <MenuItem text="Rotacionar" onAction="#onRotate"/>
-            <MenuItem text="Desfazer" onAction="#onUndo"/>
+            <MenuItem text="Escalar" onAction="#onScale"/>
         </Menu>
         <Menu text="Ajuda">
             <MenuItem text="Sobre" onAction="#onAbout"/>

@@ -1,6 +1,7 @@
 package dev.edinho.pdi.io.dialog;
 
 import dev.edinho.pdi.io.dialog.dto.RotateInput;
+import dev.edinho.pdi.io.dialog.dto.ScaleInput;
 import dev.edinho.pdi.io.dialog.dto.TranslateInput;
 import javafx.stage.Window;
 
@@ -28,6 +29,16 @@ public final class DialogFactory {
                 .field(DataInputField.integer("angle", "Ângulo (graus):"))
                 .resultMapper(values -> new RotateInput(
                         Integer.parseInt(values.get("angle"))))
+                .build();
+    }
+
+    public static DataInputDialog<ScaleInput> scale(Window owner) {
+        return new DataInputDialogBuilder<ScaleInput>()
+                .title("Escalar")
+                .owner(owner)
+                .field(DataInputField.decimal("scale", "Escala:"))
+                .resultMapper(values -> new ScaleInput(
+                        Double.parseDouble(values.get("scale"))))
                 .build();
     }
 }

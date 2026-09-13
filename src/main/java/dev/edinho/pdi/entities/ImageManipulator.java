@@ -46,6 +46,15 @@ public class ImageManipulator {
         return applyInverseTransform(inverseRotationMatrix);
     }
 
+    public BufferedImage scale(double value) {
+        Matrix inverseScaleMatrix = new Matrix(new double[][]{
+                {1 / value, 0, 0},
+                {0, 1 / value, 0},
+                {0, 0, 1}
+        });
+        return applyInverseTransform(inverseScaleMatrix);
+    }
+
     private BufferedImage applyInverseTransform(Matrix inverseTransform) {
         int lx = image.getWidth();
         int ly = image.getHeight();
