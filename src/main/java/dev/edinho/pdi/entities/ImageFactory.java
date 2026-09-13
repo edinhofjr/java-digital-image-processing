@@ -1,9 +1,8 @@
 package dev.edinho.pdi.entities;
 
-import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+
 
 public class ImageFactory {
     private ImageFactory() {
@@ -13,15 +12,26 @@ public class ImageFactory {
        return new BufferedImage(x, y, BufferedImage.TYPE_INT_RGB);
     }
 
-    public static BufferedImage createFromImage(BufferedImage image) {
+    public static BufferedImage createEmptyImage(BufferedImage image) {
         return new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
     }
 
-    public static BufferedImage loadFromPath(String path) throws IOException {
-        BufferedImage image = ImageIO.read(new File(path));
-        if (image == null) {
-            throw new IOException("Formato de imagem não suportado: " + path);
+    public static BufferedImage fromImage(Image img) {
+        if (img instanceof BufferedImage bufferedImage) {
+            return bufferedImage;
         }
-        return image;
+
+        BufferedImage bimage = new BufferedImage(
+                img.getWidth(null),
+                img.getHeight(null),
+                BufferedImage.TYPE_INT_ARGB
+        );
+
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+
+        return bimage;
     }
 }
+

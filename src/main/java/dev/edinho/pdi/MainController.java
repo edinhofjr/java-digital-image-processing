@@ -1,40 +1,88 @@
 package dev.edinho.pdi;
 
+import dev.edinho.pdi.entities.AppState;
+import dev.edinho.pdi.entities.ImageManipulator;
 import dev.edinho.pdi.io.ImagePicker;
+import dev.edinho.pdi.io.ImageRepository;
+import dev.edinho.pdi.io.ImageSaver;
+import dev.edinho.pdi.io.dialog.DataInputDialog;
+import dev.edinho.pdi.io.dialog.DialogFactory;
+import dev.edinho.pdi.io.dialog.TranslateInput;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 
 public class MainController {
+    private final AppState state = new AppState();
 
     @FXML
     private Label statusLabel;
-
     @FXML
     private ImageView originalImageView;
+    @FXML
+    private ImageView processedImageView;
 
+    private Stage getStage() {
+        return (Stage) statusLabel.getScene().getWindow();
+    }
     @FXML
     private void onOpen() throws IOException {
-        Stage stage = (Stage) statusLabel.getScene().getWindow();
+        Stage stage = getStage();
         File file = new ImagePicker(stage).choose();
         if (file != null) {
+            state.setActualImage(ImageRepository.load(file));
             originalImageView.setImage(new Image(file.toURI().toString()));
             statusLabel.setText("Selecionado: " + file.getName());
         }
     }
 
     @FXML
-    private void onSave() {
-        statusLabel.setText("Arquivo > Salvar clicado");
+    private void onTranslate() {
+        Stage stage = getStage();
+        DataInputDialog<TranslateInput> dialog = DialogFactory.translate(stage);
+
+        dialog.showAndWait().ifPresent(input -> {
+            ImageManipulator im = new ImageManipulator(state.getActualImage());
+            BufferedImage translatedImage = im.translateProcess(input.x(), input.y());
+            state.setTransformedImage(translatedImage);
+            processedImageView.setImage(SwingFXUtils.toFXImage(translatedImage, null));
+        });
+    }
+    @FXML
+    private void onSave() throws IOException {
+        Stage stage = getStage();
+        ImageSaver saver = new ImageSaver(stage);
+
+        File saveFile = saver.choose();
+
+        if (saveFile != null) {
+            BufferedImage img = state.getTransformedImage();
+            if (img == null) {
+                throw new IllegalArgumentException("Doesnt has any transformed image.");
+            }
+
+            ImageRepository.save(
+                img, saveFile, extractFormat(saveFile)
+            );
+        }
+
+    }
+
+    private static String extractFormat(File file) {
+        String name = file.getName();
+        int dotIndex = name.lastIndexOf('.');
+        if (dotIndex == -1 || dotIndex == name.length() - 1) {
+            return "png";
+        }
+        return name.substring(dotIndex + 1);
     }
 
     @FXML

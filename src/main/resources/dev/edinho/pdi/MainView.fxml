@@ -27,6 +27,7 @@
             <MenuItem text="Sair" onAction="#onExit"/>
         </Menu>
         <Menu text="Editar">
+            <MenuItem text="Transladar" onAction="#onTranslate"/>
             <MenuItem text="Desfazer" onAction="#onUndo"/>
         </Menu>
         <Menu text="Ajuda">
