@@ -1,5 +1,6 @@
 package dev.edinho.pdi.io.dialog;
 
+import dev.edinho.pdi.io.dialog.dto.TranslateInput;
 import javafx.stage.Window;
 
 public final class DialogFactory {
