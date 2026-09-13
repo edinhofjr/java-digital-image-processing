@@ -23,7 +23,7 @@ class ImageFactoryTest {
         Path savedFile = Path.of("target/test-output/saved.png");
         savedFile.getParent().toFile().mkdirs();
 
-        ImageRepository.save(image, savedFile, "png");
+        ImageRepository.save(image, savedFile.toFile(), "png");
 
         BufferedImage reloaded = ImageRepository.load(savedFile.toFile());
         Assertions.assertEquals(image.getWidth(), reloaded.getWidth());

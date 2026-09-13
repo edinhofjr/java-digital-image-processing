@@ -19,7 +19,7 @@ class TranslateTransformationTest {
 
         Path savedFile = Path.of("target/test-output/translated.png");
         savedFile.getParent().toFile().mkdirs();
-        ImageRepository.save(translated, savedFile, "png");
+        ImageRepository.save(translated, savedFile.toFile(), "png");
 
         Assertions.assertTrue(savedFile.toFile().exists());
     }
