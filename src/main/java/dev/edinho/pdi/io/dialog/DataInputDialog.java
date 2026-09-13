@@ -1,5 +1,7 @@
 package dev.edinho.pdi.io.dialog;
 
+import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
@@ -31,6 +33,7 @@ public class DataInputDialog<R> extends Dialog<R> {
         for (DataInputField field : dataFields) {
             TextField textField = new TextField();
             if (field.type() == DataInputFieldType.INTEGER) {
+                textField.setText("0");
                 textField.setTextFormatter(integerFormatter());
             }
 
@@ -53,6 +56,10 @@ public class DataInputDialog<R> extends Dialog<R> {
             fields.forEach((key, textField) -> values.put(key, textField.getText()));
             return resultMapper.apply(values);
         });
+
+        setOnShown(ev -> Platform.runLater(() ->
+                fields.values().stream().findFirst().ifPresent(Node::requestFocus)
+        ));
     }
 
     private static TextFormatter<String> integerFormatter() {
