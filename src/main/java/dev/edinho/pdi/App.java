@@ -22,7 +22,7 @@ public class App extends Application {
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
 
-        stage.setTitle("PDI");
+        stage.setTitle("PDI - Edio");
         stage.setScene(scene);
         stage.show();
     }

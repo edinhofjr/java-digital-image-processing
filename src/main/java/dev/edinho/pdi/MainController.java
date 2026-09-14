@@ -87,6 +87,22 @@ public class MainController {
     }
 
     @FXML
+    private void onMirrorHorizontal() {
+        ImageManipulator im = new ImageManipulator(state.getActualImage());
+        BufferedImage mirroredImage = im.mirrorHorizontal();
+        state.setTransformedImage(mirroredImage);
+        processedImageView.setImage(SwingFXUtils.toFXImage(mirroredImage, null));
+    }
+
+    @FXML
+    private void onMirrorVertical() {
+        ImageManipulator im = new ImageManipulator(state.getActualImage());
+        BufferedImage mirroredImage = im.mirrorVertical();
+        state.setTransformedImage(mirroredImage);
+        processedImageView.setImage(SwingFXUtils.toFXImage(mirroredImage, null));
+    }
+
+    @FXML
     private void onSave() throws IOException {
         ImageSaver saver = new ImageSaver(stage);
 

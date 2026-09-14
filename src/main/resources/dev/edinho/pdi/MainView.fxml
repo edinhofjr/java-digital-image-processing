@@ -30,6 +30,8 @@
             <MenuItem text="Transladar" onAction="#onTranslate"/>
             <MenuItem text="Rotacionar" onAction="#onRotate"/>
             <MenuItem text="Escalar" onAction="#onScale"/>
+            <MenuItem text="Espelhar Horizontal" onAction="#onMirrorHorizontal"/>
+            <MenuItem text="Espelhar Vertical" onAction="#onMirrorVertical"/>
         </Menu>
         <Menu text="Ajuda">
             <MenuItem text="Sobre" onAction="#onAbout"/>

@@ -55,6 +55,26 @@ public class ImageManipulator {
         return applyInverseTransform(inverseScaleMatrix);
     }
 
+    public BufferedImage mirrorHorizontal() {
+        double maxX = image.getWidth() - 1;
+        Matrix inverseMirror = new Matrix(new double[][]{
+                {-1, 0, maxX},
+                {0, 1, 0},
+                {0, 0, 1}
+        });
+        return applyInverseTransform(inverseMirror);
+    }
+
+    public BufferedImage mirrorVertical() {
+        double maxY = image.getHeight() - 1;
+        Matrix inverseMirror = new Matrix(new double[][]{
+                {1, 0, 0},
+                {0, -1, maxY},
+                {0, 0, 1}
+        });
+        return applyInverseTransform(inverseMirror);
+    }
+
     private BufferedImage applyInverseTransform(Matrix inverseTransform) {
         int lx = image.getWidth();
         int ly = image.getHeight();
