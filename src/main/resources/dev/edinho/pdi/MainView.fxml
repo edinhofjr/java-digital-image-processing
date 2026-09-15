@@ -33,6 +33,12 @@
             <MenuItem text="Espelhar Horizontal" onAction="#onMirrorHorizontal"/>
             <MenuItem text="Espelhar Vertical" onAction="#onMirrorVertical"/>
         </Menu>
+        <Menu text="Filtros">
+            <MenuItem text="Grayscale" onAction="#onGrayscale"/>
+            <MenuItem text="Passa Baixa" onAction="#onLowPassFilter"/>
+            <MenuItem text="Passa Alta" onAction="#onHighPassFilter"/>
+            <MenuItem text="Threshold" onAction="#onThreshold"/>
+        </Menu>
         <Menu text="Ajuda">
             <MenuItem text="Sobre" onAction="#onAbout"/>
         </Menu>

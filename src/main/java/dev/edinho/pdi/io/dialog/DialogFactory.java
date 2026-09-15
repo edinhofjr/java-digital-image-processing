@@ -2,6 +2,7 @@ package dev.edinho.pdi.io.dialog;
 
 import dev.edinho.pdi.io.dialog.dto.RotateInput;
 import dev.edinho.pdi.io.dialog.dto.ScaleInput;
+import dev.edinho.pdi.io.dialog.dto.ThresholdInput;
 import dev.edinho.pdi.io.dialog.dto.TranslateInput;
 import javafx.stage.Window;
 
@@ -39,6 +40,16 @@ public final class DialogFactory {
                 .field(DataInputField.decimal("scale", "Escala:"))
                 .resultMapper(values -> new ScaleInput(
                         Double.parseDouble(values.get("scale"))))
+                .build();
+    }
+
+    public static DataInputDialog<ThresholdInput> threshold(Window owner) {
+        return new DataInputDialogBuilder<ThresholdInput>()
+                .title("Threshold")
+                .owner(owner)
+                .field(DataInputField.integer("value", "Limiar (0-255):"))
+                .resultMapper(values -> new ThresholdInput(
+                        Integer.parseInt(values.get("value"))))
                 .build();
     }
 }

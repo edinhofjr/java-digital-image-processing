@@ -96,4 +96,102 @@ public class ImageManipulator {
         }
         return newImage;
     }
+
+    public BufferedImage grayscale() {
+        int lx = image.getWidth();
+        int ly = image.getHeight();
+
+        BufferedImage newImage = ImageFactory.createEmptyImage(image);
+
+        for (int y = 0; y < ly; y++) {
+            for (int x = 0; x < lx; x++) {
+                int gray = toGray(image.getRGB(x, y));
+                newImage.setRGB(x, y, (gray << 16) | (gray << 8) | gray);
+            }
+        }
+        return newImage;
+    }
+
+    public BufferedImage threshold(int value) {
+        int lx = image.getWidth();
+        int ly = image.getHeight();
+
+        BufferedImage newImage = ImageFactory.createEmptyImage(image);
+
+        for (int y = 0; y < ly; y++) {
+            for (int x = 0; x < lx; x++) {
+                int gray = toGray(image.getRGB(x, y));
+                int binary = gray >= value ? 255 : 0;
+                newImage.setRGB(x, y, (binary << 16) | (binary << 8) | binary);
+            }
+        }
+        return newImage;
+    }
+
+    public BufferedImage lowPassFilter() {
+        double[][] kernel = {
+                {1 / 9.0, 1 / 9.0, 1 / 9.0},
+                {1 / 9.0, 1 / 9.0, 1 / 9.0},
+                {1 / 9.0, 1 / 9.0, 1 / 9.0}
+        };
+        return applyConvolution(kernel);
+    }
+
+    public BufferedImage highPassFilter() {
+        double[][] kernel = {
+                {0, -1, 0},
+                {-1, 5, -1},
+                {0, -1, 0}
+        };
+        return applyConvolution(kernel);
+    }
+
+    private static int toGray(int rgb) {
+        int r = (rgb >> 16) & 0xFF;
+        int g = (rgb >> 8) & 0xFF;
+        int b = rgb & 0xFF;
+        return (int) Math.round(0.299 * r + 0.587 * g + 0.114 * b);
+    }
+
+    private BufferedImage applyConvolution(double[][] kernel) {
+        int lx = image.getWidth();
+        int ly = image.getHeight();
+        int kSize = kernel.length;
+        int kOffset = kSize / 2;
+
+        BufferedImage newImage = ImageFactory.createEmptyImage(image);
+
+        for (int y = 0; y < ly; y++) {
+            for (int x = 0; x < lx; x++) {
+                double r = 0, g = 0, b = 0;
+
+                for (int ky = 0; ky < kSize; ky++) {
+                    for (int kx = 0; kx < kSize; kx++) {
+                        int sx = clamp(x + kx - kOffset, 0, lx - 1);
+                        int sy = clamp(y + ky - kOffset, 0, ly - 1);
+                        int rgb = image.getRGB(sx, sy);
+                        double weight = kernel[ky][kx];
+
+                        r += weight * ((rgb >> 16) & 0xFF);
+                        g += weight * ((rgb >> 8) & 0xFF);
+                        b += weight * (rgb & 0xFF);
+                    }
+                }
+
+                int nr = clampColor((int) Math.round(r));
+                int ng = clampColor((int) Math.round(g));
+                int nb = clampColor((int) Math.round(b));
+                newImage.setRGB(x, y, (nr << 16) | (ng << 8) | nb);
+            }
+        }
+        return newImage;
+    }
+
+    private static int clamp(int value, int min, int max) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+    private static int clampColor(int value) {
+        return clamp(value, 0, 255);
+    }
 }

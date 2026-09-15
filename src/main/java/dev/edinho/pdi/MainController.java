@@ -9,6 +9,7 @@ import dev.edinho.pdi.io.dialog.DataInputDialog;
 import dev.edinho.pdi.io.dialog.DialogFactory;
 import dev.edinho.pdi.io.dialog.dto.RotateInput;
 import dev.edinho.pdi.io.dialog.dto.ScaleInput;
+import dev.edinho.pdi.io.dialog.dto.ThresholdInput;
 import dev.edinho.pdi.io.dialog.dto.TranslateInput;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
@@ -100,6 +101,42 @@ public class MainController {
         BufferedImage mirroredImage = im.mirrorVertical();
         state.setTransformedImage(mirroredImage);
         processedImageView.setImage(SwingFXUtils.toFXImage(mirroredImage, null));
+    }
+
+    @FXML
+    private void onGrayscale() {
+        ImageManipulator im = new ImageManipulator(state.getActualImage());
+        BufferedImage grayscaleImage = im.grayscale();
+        state.setTransformedImage(grayscaleImage);
+        processedImageView.setImage(SwingFXUtils.toFXImage(grayscaleImage, null));
+    }
+
+    @FXML
+    private void onLowPassFilter() {
+        ImageManipulator im = new ImageManipulator(state.getActualImage());
+        BufferedImage filteredImage = im.lowPassFilter();
+        state.setTransformedImage(filteredImage);
+        processedImageView.setImage(SwingFXUtils.toFXImage(filteredImage, null));
+    }
+
+    @FXML
+    private void onHighPassFilter() {
+        ImageManipulator im = new ImageManipulator(state.getActualImage());
+        BufferedImage filteredImage = im.highPassFilter();
+        state.setTransformedImage(filteredImage);
+        processedImageView.setImage(SwingFXUtils.toFXImage(filteredImage, null));
+    }
+
+    @FXML
+    private void onThreshold() {
+        DataInputDialog<ThresholdInput> dialog = DialogFactory.threshold(stage);
+
+        dialog.showAndWait().ifPresent(input -> {
+            ImageManipulator im = new ImageManipulator(state.getActualImage());
+            BufferedImage thresholdedImage = im.threshold(input.value());
+            state.setTransformedImage(thresholdedImage);
+            processedImageView.setImage(SwingFXUtils.toFXImage(thresholdedImage, null));
+        });
     }
 
     @FXML
