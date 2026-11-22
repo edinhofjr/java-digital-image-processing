@@ -12,4 +12,12 @@ public class Matrices {
         }
         return new Matrix(column);
     }
+
+    public static Matrix withDimensions(int x, int y) {
+        return new Matrix(new double[x][y]);
+    }
+
+    public static Matrix empty() {
+        return withDimensions(0,0);
+    }
 }

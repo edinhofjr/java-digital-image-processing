@@ -15,4 +15,15 @@ class MatricesCreationTest {
 
         Assertions.assertEquals(expected, m);
     }
+
+    @Test
+    void createMatrixWithNMDimensions() {
+        int n = 3;
+        int m = 3;
+
+        Matrix matrix = Matrices.withDimensions(n,m);
+        Matrix expected = new Matrix(new double[][]{{0, 0, 0}, {0,0,0}, {0,0,0}});
+
+        Assertions.assertEquals(matrix,expected);
+    }
 }

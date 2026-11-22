@@ -39,6 +39,26 @@
             <MenuItem text="Passa Alta" onAction="#onHighPassFilter"/>
             <MenuItem text="Threshold" onAction="#onThreshold"/>
         </Menu>
+        <Menu text="Morfologia">
+            <MenuItem text="Erosão" onAction="#onErosion"/>
+            <MenuItem text="Dilatação" onAction="#onDilation"/>
+            <MenuItem text="Abertura" onAction="#onOpening"/>
+            <MenuItem text="Fechamento" onAction="#onClosing"/>
+            <MenuItem text="Afinamento" onAction="#onThinning"/>
+        </Menu>
+        <Menu text="Características">
+            <MenuItem text="Bordas (Sobel)" onAction="#onSobel"/>
+            <MenuItem text="Bordas (Prewitt)" onAction="#onPrewitt"/>
+            <MenuItem text="Bordas (Laplaciano)" onAction="#onLaplacian"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Segmentação Binária..." onAction="#onSegmentation"/>
+            <MenuItem text="Rotulação (Componentes Conexos)..." onAction="#onLabeling"/>
+            <MenuItem text="Crescimento de Região (Semente)..." onAction="#onRegionGrow"/>
+            <MenuItem text="Extrair Características de Objetos..." onAction="#onExtractFeatures"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Destacar Moedas" onAction="#onHighlightCoins"/>
+            <MenuItem text="Moedas por Tamanho..." onAction="#onCoinsBySize"/>
+        </Menu>
         <Menu text="Ajuda">
             <MenuItem text="Sobre" onAction="#onAbout"/>
         </Menu>
