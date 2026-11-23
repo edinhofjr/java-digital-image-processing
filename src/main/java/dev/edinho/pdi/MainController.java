@@ -1,5 +1,10 @@
 package dev.edinho.pdi;
 
+import dev.edinho.pdi.challenges.DigitRecognizer;
+import dev.edinho.pdi.challenges.LeafRustAnalyzer;
+import dev.edinho.pdi.challenges.NutInspector;
+import dev.edinho.pdi.challenges.PillInspector;
+import dev.edinho.pdi.challenges.ShapeCounter;
 import dev.edinho.pdi.entities.AppState;
 import dev.edinho.pdi.entities.CoinDetector;
 import dev.edinho.pdi.entities.FeatureExtractor;
@@ -312,7 +317,7 @@ public class MainController {
         alert.initOwner(stage);
         alert.setTitle(title);
         alert.setHeaderText(header);
-        alert.getDialogPane().setContent(report);
+        alert   .getDialogPane().setContent(report);
         alert.setResizable(true);
         alert.showAndWait();
     }
@@ -320,6 +325,67 @@ public class MainController {
     private void showProcessed(BufferedImage processed) {
         state.setTransformedImage(processed);
         processedImageView.setImage(SwingFXUtils.toFXImage(processed, null));
+    }
+
+    private boolean requireImage() {
+        if (state.getActualImage() != null) return true;
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Abra uma imagem em Arquivo > Abrir antes de executar o desafio.");
+        alert.initOwner(stage);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+        return false;
+    }
+
+    @FXML
+    private void onNutInspection() {
+        if (!requireImage()) return;
+        NutInspector.Result result = NutInspector.inspect(state.getActualImage());
+        showProcessed(result.annotated());
+        statusLabel.setText("Porcas encontradas: " + result.nuts().size());
+        showReport("Controle de Qualidade - Porcas", "Porcas encontradas: " + result.nuts().size(), result.report());
+    }
+
+    @FXML
+    private void onDigitRecognition() {
+        if (!requireImage()) return;
+        DigitRecognizer.Result result = DigitRecognizer.recognize(state.getActualImage());
+        showProcessed(result.annotated());
+        String header = result.digits().size() == 1
+                ? "Número " + result.digits().getFirst().value() + ": " + result.digits().getFirst().parity()
+                : "Algarismos encontrados: " + result.digits().size();
+        statusLabel.setText(header);
+        showReport("Reconhecimento de Números", header, result.report());
+    }
+
+    @FXML
+    private void onPillInspection() {
+        if (!requireImage()) return;
+        PillInspector.Result result = PillInspector.inspect(state.getActualImage());
+        showProcessed(result.annotated());
+        String header = "Comprimidos: " + result.pills().size() + " | com problema: " + result.defective();
+        statusLabel.setText(header);
+        showReport("Controle de Qualidade - Comprimidos", header, result.report());
+    }
+
+    @FXML
+    private void onShapeCount() {
+        if (!requireImage()) return;
+        ShapeCounter.Result result = ShapeCounter.count(state.getActualImage());
+        showProcessed(result.annotated());
+        String header = "Círculos: " + result.count(ShapeCounter.Kind.CIRCLE)
+                + " | Quadrados: " + result.count(ShapeCounter.Kind.SQUARE);
+        statusLabel.setText(header);
+        showReport("Contagem de Círculos e Quadrados", header, result.report());
+    }
+
+    @FXML
+    private void onLeafAnalysis() {
+        if (!requireImage()) return;
+        LeafRustAnalyzer.Result result = LeafRustAnalyzer.analyze(state.getActualImage());
+        showProcessed(result.annotated());
+        String header = String.format("%s (%.2f%% com ferrugem)", result.status().label(), result.rustPercent());
+        statusLabel.setText(header);
+        showReport("Análise de Plantas", header, result.report());
     }
 
     @FXML
